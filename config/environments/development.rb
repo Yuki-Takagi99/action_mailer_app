@@ -34,6 +34,21 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
+  # config.action_mailer.delivery_method = :file
+  # # config.action_mailer.file_settings = { location: Rails.root.join('log/mails') }
+  # # ファイル保存パスの指定
+  # # 指定しないとデフォルトでは tmp/mails 以下に保存される
+
+  config.action_mailer.smtp_settings = {
+      user_name: Rails.application.credentials.smtp_user_name,
+      password: Rails.application.credentials.smtp_password,
+      domain: 'perfect_rails@example.com',
+      address: 'smtp.sendgrid.net',
+      port: 587,
+      authentication: :plain,
+      enable_starttls_auto: true
+  }
+
   config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
